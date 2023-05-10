@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IQueryable<Book>
+
+@foreach (var p in Model ?? Enumerable.Empty<Book>())
+{
+    <div>
+        <h3>@p.Name</h3>
+        <p>@p.Description</p>
+        <h4>@p.Price.ToString("c")</h4>
+        <h4>@p.Category</h4>
+    </div>
+}
