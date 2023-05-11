@@ -2,23 +2,23 @@
 @inject IHttpContextAccessor HttpContextAccessor;
 @using FPTBook.Utils;
 
-@{
-    ShoppingCart myCart;
+@* @{
+ShoppingCart myCart;
 
-    if (HttpContextAccessor.HttpContext.Session.GetObject<ShoppingCart>("cart") == null)
+if (HttpContextAccessor.HttpContext.Session.GetObject<ShoppingCart>("cart") == null)
 
-    {
+{
 
-        myCart = new ShoppingCart();
+myCart = new ShoppingCart();
 
-        HttpContextAccessor.HttpContext.Session.SetObject("cart", myCart);
+HttpContextAccessor.HttpContext.Session.SetObject("cart", myCart);
 
-    }
-
-    myCart = (ShoppingCart)HttpContextAccessor.HttpContext.Session.GetObject<ShoppingCart>("cart");
-
-    var count = myCart.Items.Count.ToString();
 }
+
+myCart = (ShoppingCart)HttpContextAccessor.HttpContext.Session.GetObject<ShoppingCart>("cart");
+
+var count = myCart.Items.Count.ToString();
+} *@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,18 +27,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FPTBook</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @* <link rel="stylesheet" href="~/MvcFPTBook.styles.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 </head>
 
-<body class="p-3 mb-2 bg-info text-dark">
+<body class="p-3 mb-2 bg-white text-dark">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 "
-            style="background-color: #e3f2fd;">
+            style="background-color: #ffc6c6;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img
-                        src="~/images/Logo.png" style="width:70px; height: 50px"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/images/Logo.jpg"
+                        style="width:110px; height: 50px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -56,19 +55,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">All
                                 Products</a>
                         </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="QA">Q&A</a>
-                        </li>
-
                     </ul>
-                    <partial name="_LoginPartial" />
-
+                    @* <partial name="_LoginPartial" /> *@
                 </div>
                 <a class="btn btn-outline-dark" asp-area="" asp-controller="Books" asp-action="Checkout"
                     style="padding:3px;">
                     <img src="~/images/cart.png" style="width:25px !important;height:25px;display:inline-block;"></img>
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">@count</span>
+                    @* <span class="badge bg-dark text-white ms-1 rounded-pill">@count</span> *@
                 </a>
             </div>
         </nav>
@@ -81,7 +74,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - FPTBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - FPTBook - GCS1001A
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

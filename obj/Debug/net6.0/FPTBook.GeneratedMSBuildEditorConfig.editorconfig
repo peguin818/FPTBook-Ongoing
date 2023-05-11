@@ -8,45 +8,45 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FPTBook
 build_property.RootNamespace = FPTBook
-build_property.ProjectDir = e:\Study-materials\1670\FPTBook\
+build_property.ProjectDir = E:\Study-materials\1670\FPTBook\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = e:\Study-materials\1670\FPTBook
+build_property.MSBuildProjectDirectory = E:\Study-materials\1670\FPTBook
 build_property._RazorSourceGeneratorDebug = 
 
-[e:/Study-materials/1670/FPTBook/Views/Home/Index.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/Home/Privacy.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/Shared/Components/NavigationMenu/Default.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Shared/Components/NavigationMenu/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTmF2aWdhdGlvbk1lbnVcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/Shared/Error.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/Shared/_AdminLayout.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/_ViewImports.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/_ViewStart.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[e:/Study-materials/1670/FPTBook/Views/Shared/_Layout.cshtml]
+[E:/Study-materials/1670/FPTBook/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-bm79rppy57

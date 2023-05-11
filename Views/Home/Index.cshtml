@@ -1,14 +1,66 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model IQueryable<Book>
+@model BooksListViewModel
 
-@foreach (var p in Model ?? Enumerable.Empty<Book>())
-{
-    <div>
-        <h3>@p.Name</h3>
-        <p>@p.Description</p>
-        <h4>@p.Price.ToString("c")</h4>
-        <h4>@p.Category</h4>
+<div style="margin: auto;" class="p-3 mb-2 text-dark">
+    <!-- Carousel -->
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/Panel/1.png" alt="FPT Book Shop" class="d-block w-100" style="height:400px; width: 500px;">
+                <div class="carousel-caption">
+                    <h3>FPT Book Shop</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/Panel/2.png" alt="FPT Book Shop" class="d-block w-100" style="height: 400px; width: 500px;">
+                <div class="carousel-caption">
+                    <h3>FPT Book Shop</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/Panel/3.png" alt="FPT Book Shop" class="d-block w-100" style="height: 400px; width: 500px;">
+                <div class="carousel-caption">
+                    <h3>FPT Book Shop</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
     </div>
-}
+</div>
+<h2>Book List</h2>
+<div class='row p-3 mb-2 bg-light text-dark' style='margin: auto;'>
+    @foreach (var item in Model?.Books ?? Enumerable.Empty<Book>())
+    {
+        <div class='col-md-3'>
+            <div class="card" style="width:250px">
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                    <a><img class="card-img-top" src="@Url.Content(item.Image)" alt="@item.Name"
+                            style="height: 300px; width: 210px"></a>
+                    <a asp-action="Details" asp-route-id="@item.BookID" class="btn btn-info" type="button">Show details</a>
+                </div>
+            </div>
+            <br>
+        </div>
+    }
+    <div page-model="@Model?.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+        page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+</div>

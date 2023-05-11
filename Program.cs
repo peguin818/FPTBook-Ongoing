@@ -7,11 +7,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<StoreIdentityDbContext>(options =>
+builder.Services.AddDbContext<StoreDbContext>(opts =>
 {
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:FPTBookConnection"]);
+    opts.UseSqlServer(builder.Configuration["ConnectionStrings:FPTBookConnection"]);
 });
 
+builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+// builder.Services.AddSession(options =>
+// {
+//     options.Cookie.Name = ".Book.Session";
+//     options.IdleTimeout = TimeSpan.FromMinutes(10);
+//     options.Cookie.IsEssential = true;
+// });
 
 var app = builder.Build();
 
@@ -25,6 +34,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.MapControllerRoute("pagination", "Books/Page{productPage:int}",
+    new { Controller = "Home", action = "Index" });
 
 app.UseRouting();
 
