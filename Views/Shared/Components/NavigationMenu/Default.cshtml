@@ -1,17 +1,24 @@
 @model IEnumerable<string>
 
-<!-- responsive-nav -->
-<div id="responsive-nav">
-    <!-- NAV -->
-    <ul class="main-nav nav navbar-nav">
-        <li class="active"><a asp-action="Index" asp-controller="Home" asp-route-category="">Home</a></li>
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item ">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-route-category=""
+                asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">All
+                Products</a>
+        </li>
         @foreach (string category in Model ?? Enumerable.Empty<string>())
         {
-            <a asp-action="Index" asp-controller="Home" asp-route-category="@category" asp-route-productPage="1">
-                @category
-            </a>
+            <li class="nav-item text-dark">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"
+                    asp-route-category="@category" asp-route-productPage="1">@category</a>
+            </li>
         }
     </ul>
-    <!-- /NAV -->
 </div>
-<!-- /responsive-nav -->

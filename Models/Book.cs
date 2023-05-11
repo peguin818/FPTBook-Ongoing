@@ -17,7 +17,7 @@ namespace FPTBook.Models
         [Required]
         public string? Author { get; set; }
         [Required]
-        public DateTime? PublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
         [Required]
         public string? Description { get; set; }
         [Required]

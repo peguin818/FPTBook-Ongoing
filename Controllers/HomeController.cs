@@ -14,10 +14,11 @@ public class HomeController : Controller
     {
         repository = repo;
     }
-    public ViewResult Index(int productPage = 1)
+    public ViewResult Index(string? category, int productPage = 1)
         => View(new BooksListViewModel
         {
             Books = repository.Books
+                .Where(p => category == null || p.Category == category)
                 .OrderBy(p => p.BookID)
                 .Skip((productPage - 1) * PageSize)
                 .Take(PageSize),
@@ -25,7 +26,11 @@ public class HomeController : Controller
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItems = repository.Books.Count()
-            }
+                TotalItems = category == null
+                    ? repository.Books.Count()
+                    : repository.Books.Where(e =>
+                        e.Category == category).Count()
+            },
+            CurrentCategory = category
         });
 }

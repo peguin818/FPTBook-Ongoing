@@ -1,0 +1,22 @@
+@model Book
+
+<div class="col-md-3 d-flex align-items-stretch">
+    <div class="card" style="width:250px">
+        <div class="card-body">
+            <h4 class="card-title">@Model?.Name</h4>
+            <h5><em>Author: @Model?.Author</em></h5>
+            <a><img class="card-img-top" src="@Url.Content(Model?.Image)" alt="@Model?.Name"
+                    style="height: 300px; width: 210px"></a>
+            <span class="bolded" style="font-size: 18px;">Price:</span>
+            <span class="badge rounded-pill bg-dark text-white">
+                <h7 style="font-size: 15px;">@Model?.Price.ToString("c")</h7>
+            </span>
+            <div class="card-text bolded" style="font-size: 18px;">Publication Date:</div>
+            @Model?.PublicationDate.ToString("dd/MM/yyyy")
+            <div class="card-text bolded" style="font-size: 18px;">Description:</div>
+            @Model?.Description
+            @* <a asp-action="Details" asp-route-id="@Model?.BookID" class="btn btn-info" type="button">Show
+            details</a> *@
+        </div>
+    </div>
+</div>
