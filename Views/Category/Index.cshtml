@@ -1,10 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Category Page";
 }
-@model IQueryable<Book>
+@model BooksListViewModel
 
 <div>
-    <h1 style="color: rgb(170, 170, 255); text-align: center;">FPTBook Shop - GCS1001A - Home Page</h1>
+    <h1 style="color: rgb(170, 170, 255); text-align: center;">FPTBook Shop - GCS1001A - Category Page</h1>
 </div>
 <div style="margin: auto;" class="p-3 mb-2 text-dark">
     <!-- Carousel -->
@@ -49,12 +49,12 @@
     </div>
 </div>
 <div class='row p-3 mb-2 bg-light text-dark'>
-    @foreach (var item in Model)
+    @foreach (var item in Model?.Books ?? Enumerable.Empty<Book>())
     {
         <partial name="BookSummary" model="item" />
     }
-    @* <div page-model="@Model?.PagingInfo" page-action="" page-classes-enabled="true" page-class="btn bolded"
-    page-class-normal="btn-outline-dark" page-class-selected="btn-primary bg-dark"
-    page-url-category="@Model?.CurrentCategory!" class="btn-block pull-right m-1">
-    </div> *@
+    <div page-model="@Model?.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn bolded"
+        page-class-normal="btn-outline-dark" page-class-selected="btn-primary bg-dark"
+        page-url-category="@Model?.CurrentCategory!" class="btn-block pull-right m-1">
+    </div>
 </div>

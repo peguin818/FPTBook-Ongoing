@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor HttpContextAccessor;
 @using FPTBook.Utils;
 
@@ -27,7 +27,23 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item nav-link text-dark">
-                            <vc:navigation-menu />
+                            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item ">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                            asp-action="">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                            asp-action="">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Product"
+                                            asp-action="">All
+                                            Products</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -35,8 +51,12 @@
             </div>
         </nav>
     </header>
+    <div>
+        <h1 style="color: rgb(170, 170, 255); text-align: center;">FPTBook Shop - GCS1001A - Cart Page</h1>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
+            <h2>Your Cart</h2>
             @RenderBody()
         </main>
     </div>

@@ -14,7 +14,13 @@ builder.Services.AddDbContext<StoreDbContext>(opts =>
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 // builder.Services.AddSession(options =>
 // {
 //     options.Cookie.Name = ".Book.Session";
@@ -38,22 +44,20 @@ app.UseStaticFiles();
 app.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
     new { Controller = "Home", action = "Index" });
 
-app.MapControllerRoute("page", "Page{productPage:int}",
-    new { Controller = "Home", action = "Index", productPage = 1 });
+app.MapControllerRoute("category", "Category/{category}",
+    new { Controller = "Category", action = "Index", productPage = 1 });
 
-app.MapControllerRoute("category", "{category}",
-    new { Controller = "Home", action = "Index", productPage = 1 });
-
-app.MapControllerRoute("pagination", "Books/Page{productPage:int}",
-    new { Controller = "Home", action = "Index", productPage = 1 });
+// app.MapControllerRoute("pagination", "Product/Page{productPage:int}",
+//     new { Controller = "Product", action = "Index", productPage = 1 });
 
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseSession();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 SeedData.EnsurePopulated(app);
 

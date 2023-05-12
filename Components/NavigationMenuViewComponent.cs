@@ -18,7 +18,9 @@ namespace FPTBook.Components
 
         public IViewComponentResult Invoke()
         {
-            return View(repository.Books
+            return View
+            (
+                repository.Books
                 .Select(x => x.Category)
                 .Distinct()
                 .OrderBy(x => x)
