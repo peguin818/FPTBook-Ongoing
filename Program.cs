@@ -58,6 +58,8 @@ app.UseSession();
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("Admin/{*catchall}", "/admin/Index");
 
 SeedData.EnsurePopulated(app);
 
