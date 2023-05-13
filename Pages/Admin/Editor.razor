@@ -1,0 +1,34 @@
+@page "/Admin/Books/Edit/{id:long}"
+@page "/Admin/Books/Create"
+@inherits OwningComponentBase<IStoreRepository>
+
+
+@code {
+    public IStoreRepository Repository => Service;
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+    [Parameter]
+    public long Id { get; set; } = 0;
+    public Book Book { get; set; } = new Book();
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Book = Repository.Books.FirstOrDefault(b => b.BookID == Id) ?? new();
+        }
+    }
+    public void SaveProduct()
+    {
+        if (Id == 0)
+        {
+            Repository.Create(Book);
+        }
+        else
+        {
+            Repository.Save(Book);
+        }
+        NavManager?.NavigateTo("/Admin/Books");
+    }
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

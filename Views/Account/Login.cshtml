@@ -1,0 +1,58 @@
+@model LoginModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login Page";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FPTBook</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
+</head>
+
+<body class="p-3 mb-2 bg-white text-dark">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 "
+            style="background-color: #ffc6c6;">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action=""><img src="/images/Logo.jpg"
+                        style="width:110px; height: 50px"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <h3 class="text-center" style="color: rgb(170, 170, 255)">FPTBook Shop - Login</h3>
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <form asp-action="Login" asp-controller="Account" method="post">
+                <input type="hidden" asp-for="ReturnUrl" />
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <div asp-validation-for="UserName" class="text-danger"></div>
+                    <input asp-for="UserName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <div>
+                        <input asp-for="Password" class="form-control" type="password" />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Login</button>
+            </form>
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - FPTBook - GCS1001A
+        </div>
+    </footer>
+</body>
+
+</html>

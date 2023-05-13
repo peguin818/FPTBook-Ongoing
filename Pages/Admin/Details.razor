@@ -1,0 +1,57 @@
+@page "/Admin/Books/Details/{id:long}"
+
+<h3 class="text-center" style="color: rgb(170, 170, 255)">Manage Orders</h3>
+
+<table class="table table-sm table-striped table-bordered">
+    <tbody>
+        <tr class="text-center">
+            <th>ID</th>
+            <td>@Book?.BookID</td>
+        </tr>
+        <tr class="text-center">
+            <th>Name</th>
+            <td>@Book?.Name</td>
+        </tr>
+        <tr class="text-center">
+            <th>Author</th>
+            <td>@Book?.Author</td>
+        </tr>
+        <tr class="text-center">
+            <th>Image</th>
+            <td><img src="@Book?.Image" alt="@Book?.Name" width="210px" height="300px" /></td>
+        </tr>
+        <tr class="text-center">
+            <th>Publication Date</th>
+            <td>@Book?.PublicationDate.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr class="text-center">
+            <th>Price</th>
+            <td>@Book?.Price.ToString("c")</td>
+        </tr>
+        <tr class="text-center">
+            <th>Category</th>
+            <td>@Book?.Category</td>
+        </tr>
+        <tr>
+            <th class="text-center">Description</th>
+            <td>@Book?.Description</td>
+        </tr>
+    </tbody>
+</table>
+<NavLink class="btn btn-sm btn-danger" href="@EditUrl">
+    Edit</NavLink>
+<NavLink class="btn btn-sm btn-dark" href="/Admin/Books">
+    Back</NavLink>
+
+@code {
+    [Inject]
+    public IStoreRepository? Repository { get; set; }
+    [Parameter]
+    public long Id { get; set; }
+    public Book? Book { get; set; }
+    protected override void OnParametersSet()
+    {
+        Book = Repository?.Books.FirstOrDefault(b => b.BookID == Id);
+    }
+    public string EditUrl => $"/Admin/Products/Edit/{Book?.BookID}";
+}

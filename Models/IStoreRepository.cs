@@ -8,5 +8,8 @@ namespace FPTBook.Models
     public interface IStoreRepository
     {
         IQueryable<Book> Books { get; }
+        void Save(Book b);
+        void Create(Book b);
+        void Delete(Book b);
     }
 }

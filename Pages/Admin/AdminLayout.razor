@@ -1,0 +1,41 @@
+@inherits LayoutComponentBase
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 "
+        style="background-color: #ffc6c6;">
+        <div class="container-fluid">
+            <span class="navbar-brand ml-2 bolded">FPTBook Administration</span>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item nav-link text-dark">
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item ">
+                                    <NavLink class="nav-link text-dark bolded" href="/Admin/Books"
+                                        Match="NavLinkMatch.Prefix">
+                                        Manage Books
+                                    </NavLink>
+                                </li>
+                                <li class="nav-item">
+                                    <NavLink class="nav-link text-dark bolded" href="/Admin/Orders"
+                                        Match="NavLinkMatch.Prefix">
+                                        Manage Orders
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-2 text-right">
+            <a href="/Account/Logout" class="btn btn-sm btn-danger bolded">Logout</a>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @Body
+    </main>
+</div>

@@ -11,6 +11,7 @@ namespace FPTBook.Models
         public StoreDbContext(DbContextOptions<StoreDbContext> options)
             : base(options) { }
 
-        public DbSet<Book>? Books { get; set; }
+        public DbSet<Book>? Books => Set<Book>();
+        public DbSet<Order>? Orders => Set<Order>();
     }
 }

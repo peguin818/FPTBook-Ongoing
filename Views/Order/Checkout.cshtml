@@ -1,0 +1,49 @@
+@model Order
+@{
+    ViewData["Title"] = "Checkout Page";
+    Layout = "_CheckoutLayout";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Checkout" method="post">
+    <div class="form-group">
+        <label>
+            <h5>Name:</h5>
+        </label>
+        <input asp-for="Name" class="form-control"></input>
+    </div>
+    <div class="form-group">
+        <label>
+            <h5>Address:</h5>
+        </label>
+        <input asp-for="Address" class="form-control"></input>
+    </div>
+    <div class="form-group">
+        <label>
+            <h5>Phone Number:</h5>
+        </label>
+        <input asp-for="PhoneNumber" class="form-control"></input>
+    </div>
+    <div class="form-group">
+        <label>
+            <h5>City:</h5>
+        </label>
+        <input asp-for="City" class="form-control"></input>
+    </div>
+    <div class="form-group">
+        <label>
+            <h5>Country:</h5>
+        </label>
+        <input asp-for="Country" class="form-control"></input>
+    </div>
+    <div class="checkbox">
+        <label>
+            <h5>Wrap these item(s)</h5>
+        </label>
+        <input asp-for="Wrap" />
+    </div>
+    <div class="text-center">
+        <input type="submit" class="btn btn-danger" value="Complete Order" />
+    </div>
+</form>

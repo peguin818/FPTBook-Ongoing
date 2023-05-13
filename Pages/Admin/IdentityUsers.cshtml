@@ -1,0 +1,43 @@
+@page
+@{
+    Layout = "_IdentityUsersLayout";
+    ViewData["Title"] = "Users";
+}
+@model IdentityUsersModel
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Authorization
+
+<h3 class="text-center" style="color: rgb(170, 170, 255)">Admin User</h3>
+<table class="table table-sm table-striped table-bordered">
+    <tbody>
+        <tr>
+            <th>UserName</th>
+            <td>@Model.AdminUser.UserName</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Model.AdminUser.Email</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>@Model.AdminUser.PhoneNumber</td>
+        </tr>
+    </tbody>
+</table>
+
+@functions {
+    [Authorize]
+    public class IdentityUsersModel : PageModel
+    {
+        private UserManager<IdentityUser> userManager;
+        public IdentityUsersModel(UserManager<IdentityUser> usrMgr)
+        {
+            userManager = usrMgr;
+        }
+        public IdentityUser AdminUser { get; set; } = new();
+        public async Task OnGetAsync()
+        {
+            AdminUser = await userManager.FindByNameAsync("webadmin");
+        }
+    }
+}

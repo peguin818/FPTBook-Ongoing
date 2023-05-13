@@ -1,0 +1,68 @@
+@page "/Admin/Books"
+@page "/Admin"
+@inherits OwningComponentBase<IStoreRepository>
+
+<h3 class="text-center" style="color: rgb(170, 170, 255)">Manage Books</h3>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (BookData?.Count() > 0)
+        {
+            @foreach (Book b in BookData)
+            {
+                <tr class="text-center">
+                    <td>@b.BookID</td>
+                    <td>@b.Name</td>
+                    <td><img src="@b.Image" alt="@b.Name" style="height: 300px; width: 210px"></td>
+                    <td>@b.Category</td>
+                    <td>@b.Price.ToString("c")</td>
+                    <td>
+                        <NavLink class="btn btn-sm btn-dark" href="@GetDetailsUrl(b.BookID)">
+                            Details</NavLink>
+                        <NavLink class="btn btn-sm btn-primary" href="@GetEditUrl(b.BookID)">
+                            Edit</NavLink>
+                        <button class="btn btn-danger btn-sm" @onclick="@(e => Delete(b))">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No Books Found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    public IStoreRepository Repository => Service;
+    public IEnumerable<Book> BookData { get; set; }
+    = Enumerable.Empty<Book>();
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        BookData = await Repository.Books.ToListAsync();
+    }
+    public async Task Delete(Book b)
+    {
+        Repository.Delete(b);
+        await UpdateData();
+    }
+    public string GetDetailsUrl(long id) => $"/Admin/Books/Details/{id}";
+    public string GetEditUrl(long id) => $"/Admin/Books/Edit/{id}";
+}

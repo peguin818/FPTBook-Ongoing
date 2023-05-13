@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPTBook.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20230511104503_Initial")]
+    [Migration("20230512155302_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -56,8 +56,7 @@ namespace FPTBook.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(8, 2)");
 
-                    b.Property<DateTime?>("PublicationDate")
-                        .IsRequired()
+                    b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("BookID");

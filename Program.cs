@@ -13,6 +13,7 @@ builder.Services.AddDbContext<StoreDbContext>(opts =>
 });
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 
@@ -21,21 +22,19 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
-// builder.Services.AddSession(options =>
-// {
-//     options.Cookie.Name = ".Book.Session";
-//     options.IdleTimeout = TimeSpan.FromMinutes(10);
-//     options.Cookie.IsEssential = true;
-// });
+
+builder.Services.AddServerSideBlazor();
+
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration["ConnectionStrings:FPTBookIdentityConnection"]));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseExceptionHandler("/error");
 }
 
 app.UseHttpsRedirection();
@@ -47,20 +46,30 @@ app.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
 app.MapControllerRoute("category", "Category/{category}",
     new { Controller = "Category", action = "Index", productPage = 1 });
 
-// app.MapControllerRoute("pagination", "Product/Page{productPage:int}",
-//     new { Controller = "Product", action = "Index", productPage = 1 });
+app.MapControllerRoute("pagination", "Product/Page{productPage:int}",
+    new { Controller = "Product", action = "Index", productPage = 1 });
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
 
+app.UseRequestLocalization(opts =>
+{
+    opts.AddSupportedCultures("vi-VN")
+    .AddSupportedUICultures("vi-VN")
+    .SetDefaultCulture("vi-VN");
+});
+
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
+
 app.MapBlazorHub();
 app.MapFallbackToPage("Admin/{*catchall}", "/admin/Index");
 
 SeedData.EnsurePopulated(app);
+IdentitySeedData.EnsurePopulated(app);
 
 app.Run();

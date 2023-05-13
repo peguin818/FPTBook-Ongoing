@@ -4,8 +4,6 @@
     ViewData["Title"] = "Cart Page";
 }
 
-
-
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -54,5 +52,5 @@
 
 <div>
     <a class="btn btn-danger" href="@Model?.ReturnUrl">Continue Shopping</a>
-    <a class="btn btn-danger">Checkout</a>
+    <a class="btn btn-danger" asp-action="Checkout" asp-controller="Order">Checkout</a>
 </div>

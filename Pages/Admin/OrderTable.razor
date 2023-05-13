@@ -1,0 +1,95 @@
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th colspan="8" class="text-center">@TableTitle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Orders?.Count() > 0)
+        {
+            @foreach (Order o in Orders)
+            {
+                <tr class="text-center">
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                @if (o.Lines.Count() == 1)
+                {
+                    @foreach (CartLine line in o.Lines)
+                    {
+                        <tr>
+                            <td class="text-center">@o.Name</td>
+                            <td>@o.Address</td>
+                            <td class="text-center">@o.City</td>
+                            <td class="text-center">@o.Country</td>
+                            <td class="text-center">@line.Book.Name</td>
+                            <td class="text-center">@line.Quantity</td>
+                            <td class="text-center">@line.Book.Price.ToString("c")</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-danger"
+                                @onclick="@(e => OrderSelected.InvokeAsync(Convert.ToInt32(o.OrderID)))">
+                                    @ButtonLabel
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        @{
+                            CartLine lineFirst = o.Lines.First();
+                        }
+                        <td class="text-center" rowspan="@o.Lines.Count()">@o.Name</td>
+                        <td rowspan="@o.Lines.Count()">@o.Address</td>
+                        <td class="text-center" rowspan="@o.Lines.Count()">@o.City</td>
+                        <td class="text-center" rowspan="@o.Lines.Count()">@o.Country</td>
+                        <td class="text-center">@lineFirst.Book.Name</td>
+                        <td class="text-center">@lineFirst.Quantity</td>
+                        <td class="text-center">@lineFirst.Book.Price.ToString("c")</td>
+                        <td class="text-center" rowspan="@o.Lines.Count()">
+                            <button class="btn btn-sm btn-danger"
+                            @onclick="@(e => OrderSelected.InvokeAsync(Convert.ToInt32(o.OrderID)))">
+                                @ButtonLabel
+                            </button>
+                        </td>
+                    </tr>
+                    @foreach (CartLine line in o.Lines.Skip(1))
+                    {
+                        <tr>
+                            <td class="text-center">@line.Book.Name</td>
+                            <td class="text-center">@line.Quantity</td>
+                            <td class="text-center">@line.Book.Price.ToString("c")</td>
+                        </tr>
+                    }
+                }
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No Order!</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Orders";
+
+    [Parameter]
+    public IEnumerable<Order> Orders { get; set; } = Enumerable.Empty<Order>();
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Ship";
+
+    [Parameter]
+    public EventCallback<int> OrderSelected { get; set; }
+}

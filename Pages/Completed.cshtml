@@ -1,0 +1,18 @@
+@page
+@{
+    ViewData["Title"] = "Cart Page";
+    Layout = "_CartLayout";
+}
+
+<div class="text-center">
+    <h2>Thanks!</h2>
+    <p>Thanks for placing order #@OrderID</p>
+    <p>We'll not ship your goods because this website is not real.</p>
+    <a class="btn btn-danger" asp-controller="Home">Return to Store</a>
+</div>
+
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public string? OrderID { get; set; }
+}
+
