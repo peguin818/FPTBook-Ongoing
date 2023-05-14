@@ -1,7 +1,7 @@
 <table class="table table-sm table-striped table-bordered">
     <thead>
         <tr>
-            <th colspan="8" class="text-center">@TableTitle</th>
+            <th colspan="9" class="text-center">@TableTitle</th>
         </tr>
     </thead>
     <tbody>
@@ -10,6 +10,7 @@
             @foreach (Order o in Orders)
             {
                 <tr class="text-center">
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>City</th>
@@ -23,15 +24,16 @@
                 {
                     @foreach (CartLine line in o.Lines)
                     {
-                        <tr>
-                            <td class="text-center">@o.Name</td>
+                        <tr class="text-center">
+                            <td>@o.OrderID</td>
+                            <td>@o.Name</td>
                             <td>@o.Address</td>
-                            <td class="text-center">@o.City</td>
-                            <td class="text-center">@o.Country</td>
-                            <td class="text-center">@line.Book.Name</td>
-                            <td class="text-center">@line.Quantity</td>
-                            <td class="text-center">@line.Book.Price.ToString("c")</td>
-                            <td class="text-center">
+                            <td>@o.City</td>
+                            <td>@o.Country</td>
+                            <td>@line.Book.Name</td>
+                            <td>@line.Quantity</td>
+                            <td>@line.Book.Price.ToString("c")</td>
+                            <td>
                                 <button class="btn btn-sm btn-danger"
                                 @onclick="@(e => OrderSelected.InvokeAsync(Convert.ToInt32(o.OrderID)))">
                                     @ButtonLabel
@@ -46,14 +48,15 @@
                         @{
                             CartLine lineFirst = o.Lines.First();
                         }
+                        <td class="text-center" rowspan="@o.Lines.Count()">@o.OrderID</td>
                         <td class="text-center" rowspan="@o.Lines.Count()">@o.Name</td>
                         <td rowspan="@o.Lines.Count()">@o.Address</td>
-                        <td class="text-center" rowspan="@o.Lines.Count()">@o.City</td>
-                        <td class="text-center" rowspan="@o.Lines.Count()">@o.Country</td>
+                        <td rowspan="@o.Lines.Count()">@o.City</td>
+                        <td rowspan="@o.Lines.Count()">@o.Country</td>
                         <td class="text-center">@lineFirst.Book.Name</td>
                         <td class="text-center">@lineFirst.Quantity</td>
                         <td class="text-center">@lineFirst.Book.Price.ToString("c")</td>
-                        <td class="text-center" rowspan="@o.Lines.Count()">
+                        <td rowspan="@o.Lines.Count()">
                             <button class="btn btn-sm btn-danger"
                             @onclick="@(e => OrderSelected.InvokeAsync(Convert.ToInt32(o.OrderID)))">
                                 @ButtonLabel
@@ -62,10 +65,10 @@
                     </tr>
                     @foreach (CartLine line in o.Lines.Skip(1))
                     {
-                        <tr>
-                            <td class="text-center">@line.Book.Name</td>
-                            <td class="text-center">@line.Quantity</td>
-                            <td class="text-center">@line.Book.Price.ToString("c")</td>
+                        <tr class="text-center">
+                            <td>@line.Book.Name</td>
+                            <td>@line.Quantity</td>
+                            <td>@line.Book.Price.ToString("c")</td>
                         </tr>
                     }
                 }
@@ -74,7 +77,7 @@
         else
         {
             <tr>
-                <td colspan="5" class="text-center">No Order!</td>
+                <td colspan="6" class="text-center">No Order!</td>
             </tr>
         }
     </tbody>

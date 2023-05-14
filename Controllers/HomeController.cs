@@ -18,4 +18,9 @@ public class HomeController : Controller
     {
         return View(repository.Books.Take(4));
     }
+
+    public IActionResult About()
+    {
+        return View();
+    }
 }
