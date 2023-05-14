@@ -44,18 +44,18 @@
                 }
                 else
                 {
-                    <tr>
+                    <tr class="text-center">
                         @{
                             CartLine lineFirst = o.Lines.First();
                         }
-                        <td class="text-center" rowspan="@o.Lines.Count()">@o.OrderID</td>
-                        <td class="text-center" rowspan="@o.Lines.Count()">@o.Name</td>
+                        <td rowspan="@o.Lines.Count()">@o.OrderID</td>
+                        <td rowspan="@o.Lines.Count()">@o.Name</td>
                         <td rowspan="@o.Lines.Count()">@o.Address</td>
                         <td rowspan="@o.Lines.Count()">@o.City</td>
                         <td rowspan="@o.Lines.Count()">@o.Country</td>
-                        <td class="text-center">@lineFirst.Book.Name</td>
-                        <td class="text-center">@lineFirst.Quantity</td>
-                        <td class="text-center">@lineFirst.Book.Price.ToString("c")</td>
+                        <td>@lineFirst.Book.Name</td>
+                        <td>@lineFirst.Quantity</td>
+                        <td>@lineFirst.Book.Price.ToString("c")</td>
                         <td rowspan="@o.Lines.Count()">
                             <button class="btn btn-sm btn-danger"
                             @onclick="@(e => OrderSelected.InvokeAsync(Convert.ToInt32(o.OrderID)))">
