@@ -1,6 +1,6 @@
 @page "/Admin/Books/Details/{id:long}"
 
-<h3 class="text-center" style="color: rgb(170, 170, 255)">Manage Orders</h3>
+<h3 class="text-center" style="color: rgb(170, 170, 255)">Manage Books</h3>
 
 <table class="table table-sm table-striped table-bordered">
     <tbody>
@@ -53,5 +53,5 @@
     {
         Book = Repository?.Books.FirstOrDefault(b => b.BookID == Id);
     }
-    public string EditUrl => $"/Admin/Products/Edit/{Book?.BookID}";
+    public string EditUrl => $"/Admin/Books/Edit/{Book?.BookID}";
 }

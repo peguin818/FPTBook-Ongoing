@@ -2,6 +2,57 @@
 @page "/Admin/Books/Create"
 @inherits OwningComponentBase<IStoreRepository>
 
+<h3 class="text-center" style="color: rgb(170, 170, 255)">@TitleText Book</h3>
+
+<EditForm Model="Book" OnValidSubmit="SaveProduct">
+    <DataAnnotationsValidator />
+    @if (Book.BookID != 0)
+    {
+        <div class="form-group">
+            <label>ID</label>
+            <input class="form-control" disabled value="@Book.BookID" />
+        </div>
+    }
+    <div class="form-group">
+        <label>Name</label>
+        <ValidationMessage For="@(() => Book.Name)" />
+        <InputText class="form-control" @bind-Value="Book.Name" />
+    </div>
+    <div class="form-group">
+        <label>Author</label>
+        <ValidationMessage For="@(() => Book.Author)" />
+        <InputText class="form-control" @bind-Value="Book.Author" />
+    </div>
+    <div class="form-group">
+        <label>Publication Date</label>
+        <ValidationMessage For="@(() => Book.PublicationDate)" />
+        <InputDate class="form-control" @bind-Value="Book.PublicationDate" />
+    </div>
+    <div class="form-group">
+        <label>Image</label>
+        <ValidationMessage For="@(() => Book.Image)" />
+        <InputText class="form-control" @bind-Value="Book.Image" />
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <ValidationMessage For="@(() => Book.Category)" />
+        <InputText class="form-control" @bind-Value="Book.Category" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <ValidationMessage For="@(() => Book.Price)" />
+        <InputNumber class="form-control" @bind-Value="Book.Price" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <ValidationMessage For="@(() => Book.Description)" />
+        <InputText class="form-control" @bind-Value="Book.Description" />
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-@ThemeColor">Save</button>
+        <NavLink class="btn btn-secondary" href="/Admin/Books">Cancel</NavLink>
+    </div>
+</EditForm>
 
 @code {
     public IStoreRepository Repository => Service;

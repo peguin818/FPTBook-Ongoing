@@ -40,14 +40,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
-    new { Controller = "Home", action = "Index" });
+// app.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
+//     new { Controller = "Category", action = "Index" });
 
-app.MapControllerRoute("category", "Category/{category}",
-    new { Controller = "Category", action = "Index", productPage = 1 });
+// app.MapControllerRoute("category", "/{category}",
+//     new { Controller = "Category", action = "Index", productPage = 1 });
 
-app.MapControllerRoute("pagination", "Product/Page{productPage:int}",
-    new { Controller = "Product", action = "Index", productPage = 1 });
+// app.MapControllerRoute("page", "/Page{productPage:int}",
+//     new { Controller = "Product", action = "Index", productPage = 1 });
 
 app.UseRouting();
 
